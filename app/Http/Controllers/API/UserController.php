@@ -22,10 +22,9 @@ class UserController extends Controller
                 'user' => $user->only(['nim', 'username','nama_lengkap']),
                 'token' =>  $token
             ];
-    
-            return response()->json($data, 200);
 
-            return $this->success('',"login success");
+
+            return $this->success( $data,"login success");
         } 
         else{ 
             return $this->error("username atau password salah" , 400);
@@ -58,7 +57,7 @@ class UserController extends Controller
                 $user = User::find(Auth::user()->id);
                 $user->password = Hash::make($request->pass_baru);
                 $user->save();
-                return $this->success($request->pass_baru, "berhasil ubah password");
+                return $this->success('', "berhasil ubah password");
             } else {
                 return $this->error("Password Lama Tidak cocok" , 400);
             }
