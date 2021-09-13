@@ -31,9 +31,6 @@ Route::prefix('user')->group(function () {
 
 Route::post('/token-check', [UserController::class, 'login'])->name('login');
 
-
-Route::get('penilaian/{tgl_lahir}', [PenilaianController::class, 'getPenilaian']);
-
 Route::middleware('auth:api')->group( function () {
    
     Route::prefix('user')->group(function () {
@@ -51,6 +48,7 @@ Route::middleware('auth:api')->group( function () {
        
     });
 
+    Route::get('penilaian/{tgl_lahir}', [PenilaianController::class, 'getPenilaian']);
     Route::get('sliders', [SliderController::class, 'index']);
 
     
