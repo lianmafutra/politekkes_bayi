@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\PenilaianController;
+use App\Http\Controllers\API\SliderController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -48,6 +50,8 @@ Route::middleware('auth:api')->group( function () {
         Route::post('logout', [UserController::class, 'logout']);
        
     });
+
+    Route::get('sliders', [SliderController::class, 'index']);
 
     
 });

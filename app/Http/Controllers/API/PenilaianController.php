@@ -26,7 +26,8 @@ class PenilaianController extends Controller
 	    $response = [
             'success' => true,
             'message' => 'rentang usia bayi '. $this->getRentangBulan($tanggal_lahir). ' bulan',
-            'usia_bayi' => $this->getRentangBulan($tanggal_lahir),
+          //   'usia_bayi' => $this->getSelisihHari($tanggal_lahir),  
+            'rentang_usia_bayi' => $this->getRentangBulan($tanggal_lahir),
             'data'    =>  $penilaian,
           
         ];

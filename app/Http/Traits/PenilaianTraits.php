@@ -14,6 +14,14 @@ trait PenilaianTraits {
         return $date_diff;
     }
 
+    public function getSelisihHari($tanggal_lahir){
+        $tanggal_sekarang = Carbon::now()->format('d-m-Y');
+        $tanggal_lahir=Carbon::parse($tanggal_lahir);
+        $tanggal_sekarang=Carbon::parse($tanggal_sekarang);
+        $date_diff=$tanggal_lahir->diffInDays($tanggal_sekarang);
+        return $date_diff;
+    }
+
     public function getRentangBulan($tanggal_lahir){
        $selisih_bulan =  $this->getSelisihBulan($tanggal_lahir);
 
