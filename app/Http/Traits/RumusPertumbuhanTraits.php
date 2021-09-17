@@ -8,17 +8,10 @@ use App\Models\StandarBB;
 
 trait RumusPertumbuhanTraits {
 
-    
-    //penilaian pertumbuhan bayi 0-60 bulan
+    //Penilaian pertumbuhan bayi 0-60 bulan laki-laki, perempuan
 
-
-
-
-    //kolom
+    //kolom yang dihitung 
     // -3 SD,  -2 SD,  +1 SD
-
-
-
     
     public function getRekomendasi($berat_badan){
         if($berat_badan == BeratBadan::NORMAL){
@@ -30,8 +23,8 @@ trait RumusPertumbuhanTraits {
     }
 
     public function getPertumbuhan($jenis_kelamin, $usia_dalam_bulan, $berat_badan){
-        $data = StandarBB::where('jenis_kelamin','=',$jenis_kelamin)->where('umur','=', $usia_dalam_bulan)->first();
 
+        $data = StandarBB::where('jenis_kelamin','=',$jenis_kelamin)->where('umur','=', $usia_dalam_bulan)->first();
 
         if($berat_badan < $data->m3){
             return BeratBadan::SANGAT_KURANG;
@@ -46,7 +39,6 @@ trait RumusPertumbuhanTraits {
             return BeratBadan::LEBIH;
         }
     
-     
     }
 
     

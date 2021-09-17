@@ -23,11 +23,10 @@ class UserController extends Controller
                 'token' =>  $token
             ];
 
-
             return $this->success( $data,"login success");
         } 
         else{ 
-            return $this->error("username atau password salah" , 400);
+            return $this->error("username atau password salah" , 401);
             
         } 
     }

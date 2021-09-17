@@ -27,17 +27,18 @@ class PertumbuhanRequest extends FormRequest
     public function rules()
     {
         return [
-            'jenis_kelamin'                 => ['required', Rule::in(['L','P'])],
-            
-        
+            'jenis_kelamin'    => ['required', Rule::in(['L','P'])],
+            'usia_dalam_bulan' => 'required|numeric|',
+            'berat_badan'      => 'required|numeric|',
         ];   
     }
 
     public function messages()
     {
         return [
-            'jenis_kelamin.required'         => 'jenis_kelamin wajib di isi',
-            'jenis_kelamin.in'               => 'Format jenis_kelamin tidak sesuai',
+            'jenis_kelamin.required' => 'jenis_kelamin wajib di isi',
+            'jenis_kelamin.in'       => 'Format jenis_kelamin tidak sesuai',
+            'berat_badan.required'   => 'berat_badan wajib di isi',
             
         ];
     }

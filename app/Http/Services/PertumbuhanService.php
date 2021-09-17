@@ -13,7 +13,7 @@ class PertumbuhanService
 
     use RumusPertumbuhanTraits;
 
-    
+
     public function __construct()
     {
         $this->pertumbuhan = new \stdClass;
@@ -33,7 +33,7 @@ class PertumbuhanService
         return $this;
     }
 
-    public function berat_badan($berat_badan)
+    public function berat_badan(int $berat_badan)
     {
         $this->pertumbuhan->berat_badan = $berat_badan;
         $this->berat_badan              = $berat_badan;
