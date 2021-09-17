@@ -15,10 +15,10 @@ trait RumusPertumbuhanTraits {
     
     public function getRekomendasi($berat_badan){
         if($berat_badan == BeratBadan::NORMAL){
-            return Rekomendasi::REKOMENDASI_2;
+            return Rekomendasi::NORMAL;
         }
         else{
-            return Rekomendasi::REKOMENDASI_1;
+            return Rekomendasi::TIDAK_NORMAL;
         }
     }
 

@@ -51,7 +51,6 @@ class UserController extends Controller
 
     public function ubahPassword(Request $request){
         try {
-
             if (Hash::check($request->pass_lama, Auth::user()->password)) {
                 $user = User::find(Auth::user()->id);
                 $user->password = Hash::make($request->pass_baru);

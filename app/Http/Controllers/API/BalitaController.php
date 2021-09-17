@@ -25,8 +25,8 @@ class BalitaController extends Controller
                 'balita'  => [
                     'usia_dalam_hari'  => $this->getSelisihHari($tanggal_lahir),
                     'usia_dalam_bulan' => $this->getSelisihBulan($tanggal_lahir),
-                    'usia_terbilang'   => 'Umur balita pada saat ini <strong>'.$this->getUsiaBayiTerbilang($tanggal_lahir).'</strong>, Tekan selanjutnya untuk melakukan penilaiaan pertumbuhan balita',
                     'rentang_usia'     => $this->getRentangBulan($tanggal_lahir),
+                    'usia_terbilang'   => 'Umur balita pada saat ini <strong>'.$this->getUsiaBayiTerbilang($tanggal_lahir).'</strong>, Tekan selanjutnya untuk melakukan penilaiaan pertumbuhan balita',
                 ]
             ];
 
@@ -45,11 +45,11 @@ class BalitaController extends Controller
 
         if($validated){
             $pertumbuhan = (new PertumbuhanService)
-            ->usia_dalam_bulan($request->usia_dalam_bulan)
-            ->jenis_kelamin($request->jenis_kelamin)
-            ->berat_badan($request->berat_badan)
-            ->hitungPertumbuhan()
-            ->get();
+                ->usia_dalam_bulan($request->usia_dalam_bulan)
+                ->jenis_kelamin($request->jenis_kelamin)
+                ->berat_badan($request->berat_badan)
+                ->hitungPertumbuhan()
+                ->get();
         
             return $this->success($pertumbuhan,'hasil perhitungan pertumbuhan balita');
         }
