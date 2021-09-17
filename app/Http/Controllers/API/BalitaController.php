@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PertumbuhanRequest;
 use App\Http\Services\PertumbuhanService;
 use Illuminate\Http\Request;
 
@@ -50,17 +51,21 @@ class BalitaController extends Controller
 
     }
 
-    public function getPertumbuhan(Request $request){
+    public function getPertumbuhan(PertumbuhanRequest $request){
 
-        $pertumbuhan = (new PertumbuhanService)
+        $validated = $request->validated();
+
+        if($validated){
+            $pertumbuhan = (new PertumbuhanService)
             ->usia_dalam_bulan($request->usia_dalam_bulan)
             ->jenis_kelamin($request->jenis_kelamin)
             ->berat_badan($request->berat_badan)
             ->hitungPertumbuhan()
             ->get();
         
-       
             return $this->success($pertumbuhan,'pertumbuhan balita');
+        }
+      
     }
     
 }
