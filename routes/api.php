@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\PenilaianController;
 use App\Http\Controllers\API\SliderController;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,10 @@ use App\Http\Controllers\API\SliderController;
 Route::prefix('user')->group(function () {
     Route::post('login', [UserController::class, 'login']);
     Route::post('register', [UserController::class, 'register']);       
+});
+
+Route::get('/foo', function () {
+    Artisan::call('storage:link');
 });
 
 Route::post('/token-check', [UserController::class, 'login'])->name('login');
