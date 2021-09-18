@@ -48,12 +48,9 @@ class PertumbuhanService
         $this->pertumbuhan->rekomendasi_kode   = $hasil_rekomendasi->get('kode');
         $this->pertumbuhan->rekomendasi        = $hasil_rekomendasi->get('hasil');
         
-        return $this;
-    }
-
-    public function get()
-    {
         return $this->pertumbuhan;
     }
+
+  
     
 }
