@@ -26,8 +26,7 @@ class UserController extends Controller
             return $this->success( $data,"login success");
         } 
         else{ 
-            return $this->error("username atau password salah" , 401);
-            
+            return $this->error("username atau password salah" , 200);
         } 
     }
 

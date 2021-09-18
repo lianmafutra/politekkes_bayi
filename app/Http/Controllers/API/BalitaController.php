@@ -49,10 +49,9 @@ class BalitaController extends Controller
                 ->jenis_kelamin($request->jenis_kelamin)
                 ->berat_badan($request->berat_badan)
                 ->hitungPertumbuhan();
-        
+
             return $this->success($pertumbuhan,'hasil perhitungan pertumbuhan balita');
         }
-      
     }
     
 }

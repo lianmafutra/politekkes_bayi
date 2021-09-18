@@ -34,9 +34,9 @@ Route::prefix('user')->group(function () {
     Route::post('register', [UserController::class, 'register']);       
 });
 
-Route::get('/foo', function () {
-    Artisan::call('storage:link');
-});
+// Route::get('/foo', function () {
+//     Artisan::call('storage:link');
+// });
 
 Route::post('/token-check', [UserController::class, 'login'])->name('login');
 
@@ -59,9 +59,9 @@ Route::middleware('auth:api')->group( function () {
 
 
     Route::prefix('balita')->group(function () {
-        Route::get('penilaian/{tgl_lahir}', [PenilaianController::class, 'getPenilaian']);
         Route::get('umur/{tgl_lahir}', [BalitaController::class, 'getUmurBalita']);
         Route::post('pertumbuhan', [BalitaController::class, 'getPertumbuhan']);
+        Route::get('penilaian/{tgl_lahir}', [PenilaianController::class, 'getPenilaian']);
     });
 
    
