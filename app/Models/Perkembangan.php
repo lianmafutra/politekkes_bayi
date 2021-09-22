@@ -18,7 +18,7 @@ class Perkembangan extends Model
     public function getGambarAttribute()
     {
         if(!$this->attributes['gambar'] ==""){
-            return "https://".$this->attributes['gambar'];
+            return "https://lmproject.my.id/storage/perkembangan/".$this->attributes['gambar'];
         }      
     }
 }
