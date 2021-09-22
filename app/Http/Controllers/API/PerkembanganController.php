@@ -12,11 +12,17 @@ class PerkembanganController extends Controller
 
     use PenilaianTraits;
 
-    public function getPertanyaan(){
-        $Perkembangan = Perkembangan::all();
+    public function getPertanyaan($tanggal_lahir){
+
+
+        $usia_bayi = $this->getRentangBulan($tanggal_lahir);
+        $Perkembangan = Perkembangan::whereRelation('usia_bayi', 'rentang', '=', $usia_bayi)
+        ->select(['bulan','usia_bayi_id','text', 'gambar'])
+        ->get();
+
         return response()->json([
             "success" => true,
-            "usia_bulan" => $this->getSelisihBulan('20-05-2021'),
+            "usia_bulan" => $this->getSelisihBulan($tanggal_lahir),
             "data"=>  $Perkembangan
         ]
            

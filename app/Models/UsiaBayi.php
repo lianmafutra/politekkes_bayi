@@ -11,7 +11,7 @@ class UsiaBayi extends Model
     protected $table = 'usia_bayi';
 
 
-    public function penilaian(){
-        return $this->hasMany(Penilaian::class);
+    public function perkembangan(){
+        return $this->hasMany(Perkembangan::class);
     }
 }

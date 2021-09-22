@@ -63,7 +63,7 @@ Route::middleware('auth:api')->group( function () {
     Route::prefix('balita')->group(function () {
         Route::get('umur/{tgl_lahir}', [BalitaController::class, 'getUmurBalita']);
         Route::post('pertumbuhan', [BalitaController::class, 'getPertumbuhan']);
-        Route::get('perkembangan', [PerkembanganController::class, 'getPertanyaan']);
+        Route::get('perkembangan/{tgl_lahir}', [PerkembanganController::class, 'getPertanyaan']);
         Route::get('penilaian/{tgl_lahir}', [PenilaianController::class, 'getPenilaian']);
     });
 

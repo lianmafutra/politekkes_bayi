@@ -9,4 +9,9 @@ class Perkembangan extends Model
 {
     use HasFactory;
     protected $table = 'perkembangan';
+
+    public function usia_bayi()
+    {
+        return $this->belongsTo(UsiaBayi::class);
+    }
 }
