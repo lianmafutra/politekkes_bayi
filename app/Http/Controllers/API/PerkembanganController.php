@@ -15,9 +15,11 @@ class PerkembanganController extends Controller
     public function getPertanyaan($tanggal_lahir){
 
         $usia_bayi = $this->getRentangBulan($tanggal_lahir);
-        $Perkembangan = Perkembangan::all();
+        $Perkembangan = Perkembangan::whereRelation('usia_bayi', 'rentang', '=', $usia_bayi)
+        ->select(['bulan','usia_bayi_id','text', 'gambar'])
+        ->get();
 
-        // dd(Perkembangan::all()->toArray());
+        
 
         return response()->json([
             "success"      => true,
