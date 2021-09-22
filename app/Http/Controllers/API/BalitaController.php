@@ -18,7 +18,8 @@ class BalitaController extends Controller
 
     use PenilaianTraits;
 
-    public function getUmurBalita($tanggal_lahir){
+    public function getUmurBalita($tanggal_lahir)
+    {
         if (date('d-m-Y', strtotime($tanggal_lahir)) == $tanggal_lahir)
         {
             $data = [
@@ -39,16 +40,17 @@ class BalitaController extends Controller
 
     }
 
-    public function getPertumbuhan(PertumbuhanRequest $request){
-
+    public function getPertumbuhan(PertumbuhanRequest $request)
+    {
         $validated = $request->validated();
-
         if($validated){
             $pertumbuhan = (new PertumbuhanService)
-                ->usia_dalam_bulan($request->usia_dalam_bulan)
-                ->jenis_kelamin($request->jenis_kelamin)
-                ->berat_badan($request->berat_badan)
-                ->hitungPertumbuhan();
+                ->setUsia($request->usia_dalam_bulan)
+                ->setJenisKelamin($request->jenis_kelamin)
+                ->setBeratBadan($request->berat_badan)
+                ->getHasilPertumbuhan()
+                ->getHasilRekomendasi()
+                ->build();
 
             return $this->success($pertumbuhan,'hasil perhitungan pertumbuhan balita');
         }

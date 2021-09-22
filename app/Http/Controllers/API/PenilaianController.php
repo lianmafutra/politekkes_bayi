@@ -32,7 +32,6 @@ class PenilaianController extends Controller
                     ->select(['text'])
                     ->get();
 
-
             return response()->json([
                 'success'             => true,
                 'message'             => 'rentang umur bayi ' . $this->getRentangBulan($tanggal_lahir) . ' bulan',

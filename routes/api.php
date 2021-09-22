@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\PenilaianController;
+use App\Http\Controllers\API\PerkembanganController;
 use App\Http\Controllers\API\SliderController;
+use App\Models\Perkembangan;
 use Illuminate\Support\Facades\Artisan;
 
 /*
@@ -61,6 +63,7 @@ Route::middleware('auth:api')->group( function () {
     Route::prefix('balita')->group(function () {
         Route::get('umur/{tgl_lahir}', [BalitaController::class, 'getUmurBalita']);
         Route::post('pertumbuhan', [BalitaController::class, 'getPertumbuhan']);
+        Route::get('perkembangan', [PerkembanganController::class, 'getPertanyaan']);
         Route::get('penilaian/{tgl_lahir}', [PenilaianController::class, 'getPenilaian']);
     });
 

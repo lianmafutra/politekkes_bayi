@@ -13,8 +13,11 @@ trait RumusPertumbuhanTraits {
         if($hasil_pertumbuhan == BeratBadan::NORMAL){
             return new Collection([ 'kode' => 'normal', 'hasil' => Rekomendasi::NORMAL]);
         }
-        else{
+        else if($hasil_pertumbuhan == BeratBadan::SANGAT_KURANG || $hasil_pertumbuhan == BeratBadan::KURANG || $hasil_pertumbuhan == BeratBadan::LEBIH ){
             return new Collection([ 'kode' => 'tidak_normal', 'hasil' => Rekomendasi::TIDAK_NORMAL]);
+        }
+        else{
+            return new Collection([ 'kode' => 'error', 'hasil' => "terjadi kesalahan pada hasil pertumbuhan"]);
         }
     }
 
@@ -28,16 +31,17 @@ trait RumusPertumbuhanTraits {
         $data = StandarBB::where('jenis_kelamin','=',$jenis_kelamin)->where('umur','=', $usia_dalam_bulan)->first();
 
         if($berat_badan < $data->m3){
-            return BeratBadan::SANGAT_KURANG;
+            return new Collection([ 'kode' => 'sangat_kurang', 'hasil' => BeratBadan::SANGAT_KURANG]);
         }
         else if($berat_badan < $data->m2){
-            return BeratBadan::KURANG;
+            return new Collection([ 'kode' => 'kurang', 'hasil' => BeratBadan::KURANG]);
         }
         else if($berat_badan <= $data->p1 ){
-            return BeratBadan::NORMAL;
+            return new Collection([ 'kode' => 'normal', 'hasil' => BeratBadan::NORMAL]);
         }
         else if($berat_badan > $data->p1){
-            return BeratBadan::LEBIH;
+            return new Collection([ 'kode' => 'lebih', 'hasil' => BeratBadan::LEBIH]);
+
         }
     
     }

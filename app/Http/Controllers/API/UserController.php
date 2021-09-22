@@ -48,7 +48,8 @@ class UserController extends Controller
       
     }
 
-    public function ubahPassword(Request $request){
+    public function ubahPassword(Request $request)
+    {
         try {
             if (Hash::check($request->pass_lama, Auth::user()->password)) {
                 $user = User::find(Auth::user()->id);
@@ -56,19 +57,20 @@ class UserController extends Controller
                 $user->save();
                 return $this->success('', "berhasil ubah password");
             } else {
-                return $this->error("Password Lama Tidak cocok" , 400);
+                return $this->error("Password Lama Tidak cocok" , 200);
             }
         } catch (\Throwable $th) {
             return $this->error("Terjadi Kesalahan", 400);
         }
     }
 
-
-    public function resetPassword(Request $request){
+    public function resetPassword(Request $request)
+    {
         // masih ragu hak akses reset password
     }
 
-    public function logout(){
+    public function logout()
+    {
         try {
             Auth::user()->token()->delete(); 
             return $this->success('',"user berhasil logout");

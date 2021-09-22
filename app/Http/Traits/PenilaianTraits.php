@@ -24,18 +24,12 @@ trait PenilaianTraits {
     }
 
     public function getUsiaBayiTerbilang($tanggal_lahir){        
-    //tanggal lahir
-    $birthDt = new DateTime($tanggal_lahir);
-    //tanggal hari ini
-    $today = new DateTime('today');
-    //tahun
-    $y = $today->diff($birthDt)->y;
-    //bulan
-    $m = $today->diff($birthDt)->m;
-    //hari
-    $d = $today->diff($birthDt)->d;
-
-    return  $m . " bulan " . $d . " hari";
+        $tgl_lahir = new DateTime($tanggal_lahir);
+        $today = new DateTime('today');
+        $y = $today->diff($tgl_lahir)->y;
+        $m = $today->diff($tgl_lahir)->m;
+        $d = $today->diff($tgl_lahir)->d;
+        return  $m . " bulan " . $d . " hari";
     }
 
     public function validasiTanggal($tgl){
