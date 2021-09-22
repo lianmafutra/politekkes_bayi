@@ -14,4 +14,8 @@ class Perkembangan extends Model
     {
         return $this->belongsTo(UsiaBayi::class);
     }
+
+    public function getGambarAttribute(){
+        // return $this->gambar;
+    }
 }

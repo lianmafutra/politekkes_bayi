@@ -22,6 +22,7 @@ class PerkembanganController extends Controller
 
         return response()->json([
             "success" => true,
+            'rentang_umur'     => $this->getRentangBulan($tanggal_lahir),
             "usia_bulan" => $this->getSelisihBulan($tanggal_lahir),
             "data"=>  $Perkembangan
         ]
