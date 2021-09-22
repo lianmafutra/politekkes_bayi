@@ -15,7 +15,10 @@ class Perkembangan extends Model
         return $this->belongsTo(UsiaBayi::class);
     }
 
-    // public function getGambarAttribute(){
-    //     return $this->bulan;
-    // }
+    public function getGambarAttribute()
+    {
+        if(!$this->attributes['gambar'] ==""){
+            return "https://".$this->attributes['gambar'];
+        }      
+    }
 }
