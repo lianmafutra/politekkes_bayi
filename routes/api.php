@@ -52,7 +52,9 @@ Route::middleware('auth:api')->group( function () {
         });
 
         Route::prefix('jawaban')->group(function () {
-            Route::post('kirim', [JawabanController::class, 'kirimJawaban']);    
+            Route::post('kirim', [JawabanController::class, 'kirimJawaban']); 
+            Route::get('histori', [JawabanController::class, 'getHistoriJawabanByUser']); 
+            Route::get('histori/detail/{id}', [JawabanController::class, 'getHistoriJawabanDetail']);    
         });
 
         Route::post('logout', [UserController::class, 'logout']);
@@ -63,7 +65,9 @@ Route::middleware('auth:api')->group( function () {
     Route::prefix('balita')->group(function () {
         Route::get('umur/{tgl_lahir}', [BalitaController::class, 'getUmurBalita']);
         Route::post('pertumbuhan', [BalitaController::class, 'getPertumbuhan']);
+        Route::get('perkembangan/hasil', [PerkembanganController::class, 'getHasilPerkembangan']);
         Route::get('perkembangan/{tgl_lahir}', [PerkembanganController::class, 'getPertanyaan']);
+      
     });
 
    

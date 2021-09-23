@@ -19,6 +19,9 @@ class Perkembangan extends Model
     {
         if(!$this->attributes['gambar'] ==""){
             return "https://lmproject.my.id/storage/perkembangan/".$this->attributes['gambar'];
+        }
+        else{
+            return "";
         }      
     }
 }
