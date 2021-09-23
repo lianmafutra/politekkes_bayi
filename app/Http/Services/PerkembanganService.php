@@ -39,7 +39,7 @@ class PerkembanganService
             "data"    => [
                 "hasil_perkembangan"         => '<strong>'.$hasil_perkembangan . "</strong> ,<br><br> tekan selanjutnya untuk melihat hasil rekomendasi",
                 "kode_tindakan_perkembangan" => $kode_tindakan,
-                "tindakan"                   => $tindakan,
+                "tindakan"                   => $tindakan . "<br><br> Tekan selanjutnya untuk mengetahui jadwal penilaian pertumbuhan dan perkembangan berikutnya",
                 "jadwal_pertumbuhan"         => Carbon::parse($tgl_lahir)->addMonths(1)->format('d-m-Y'),
                 "jadwal_perkembangan"        => HasilPerkembangan::HASIL_JADWAL
             ]
