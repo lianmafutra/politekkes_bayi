@@ -4,9 +4,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Traits\PenilaianTraits;
 use App\Models\Penilaian;
 use App\Http\Controllers\Controller as Controller;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
-use DateTime;
+
 
 class PenilaianController extends Controller
 {
@@ -20,13 +18,6 @@ class PenilaianController extends Controller
         {
 
             $usia_bayi = $this->getRentangBulan($tanggal_lahir);
-
-            // $penilaian = cache()->rememberForever('penilaian', function () use ($umur_bayi)
-            // {
-            //     return Penilaian::whereRelation('umur_bayi', 'rentang', '=', $umur_bayi)
-            //         ->select(['text'])
-            //         ->get();
-            // });
 
             $penilaian = Penilaian::whereRelation('usia_bayi', 'rentang', '=', $usia_bayi)
                     ->select(['text'])

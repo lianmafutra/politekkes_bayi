@@ -5,13 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PertumbuhanRequest;
 use App\Http\Services\PertumbuhanService;
-use Illuminate\Http\Request;
-
 use App\Http\Traits\PenilaianTraits;
-use App\Models\Penilaian;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
-use DateTime;
+
 
 class BalitaController extends Controller
 {
