@@ -27,6 +27,17 @@ abstract class Tindakan
     (gerak kasar, gerak halus,&nbsp;bicara &amp; bahasa, sosialisasi dan kemandirian).</strong></p>';
 
 
+    public static function getTindakan($kode_tindakan_perkembangan){
+        if($kode_tindakan_perkembangan=='sesuai'){
+            return Tindakan::SESUAI;
+        }else if($kode_tindakan_perkembangan=='meragukan'){
+            return Tindakan::MERAGUKAN;
+        }else if($kode_tindakan_perkembangan=='penyimpangan'){
+            return Tindakan::PENYIMPANGAN;
+        }else{
+            return "kode_tindakan_perkembangan error";
+        }
+    }
 
 
 }

@@ -24,6 +24,7 @@ class BalitaController extends Controller
         {
             $data = [
                 'balita'  => [
+                    'usia_balita'  => $this->getUsiaBayiTerbilang($tanggal_lahir),
                     'usia_dalam_hari'  => $this->getSelisihHari($tanggal_lahir),
                     'usia_dalam_bulan' => $this->getSelisihBulan($tanggal_lahir),
                     'rentang_usia'     => $this->getRentangBulan($tanggal_lahir),
