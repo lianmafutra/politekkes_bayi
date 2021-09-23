@@ -4,20 +4,26 @@ namespace App\Http\Services;
 use App\Http\Utils\HasilPerkembangan;
 use App\Http\Utils\Tindakan;
 use Carbon\Carbon;
-
+use App\Http\Controllers\Controller;
+use App\Models\Penilaian;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Traits\PenilaianTraits;
+use App\Http\Utils\Pertumbuhan;
+use App\Http\Utils\Rekomendasi;
+use App\Models\Jawaban;
+use App\Models\Perkembangan;
 
 class PerkembanganService  
 {
 
     public static function getHasilPerkembangan($tgl_lahir, $array_jawaban){
 
-
         $hasil_perkembangan="";
         $tindakan="";
         $kode_tindakan="";
         $jumlah_ya = count(array_keys($array_jawaban, "ya"));
         
-
        if($jumlah_ya >= 9){
             $hasil_perkembangan=HasilPerkembangan::SESUAI;
             $tindakan=Tindakan::SESUAI;
@@ -45,5 +51,7 @@ class PerkembanganService
             ]
         ]);
     }
+
+
 
 }
