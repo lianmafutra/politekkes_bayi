@@ -9,25 +9,28 @@ use Carbon\Carbon;
 class PerkembanganService  
 {
 
-    public static function getHasilPerkembangan($tgl_lahir, $array_jawaban=[]){
+    public static function getHasilPerkembangan($tgl_lahir, $array_jawaban){
 
 
         $hasil_perkembangan="";
         $tindakan="";
         $kode_tindakan="";
+        $jumlah_ya = count(array_keys($array_jawaban, "ya"));
+        
 
-        if(count($array_jawaban)<=6){
-            $hasil_perkembangan=HasilPerkembangan::PENYIMPANGAN;
-            $tindakan=Tindakan::PENYIMPANGAN;
-            $kode_tindakan="penyimpangan";
-        } else if(count($array_jawaban)>=7){
-            $hasil_perkembangan=HasilPerkembangan::MERAGUKAN;
-            $tindakan=Tindakan::MERAGUKAN;
-            $kode_tindakan="meragukan";
-        }else if(count($array_jawaban)>=9){
+       if($jumlah_ya >= 9){
             $hasil_perkembangan=HasilPerkembangan::SESUAI;
             $tindakan=Tindakan::SESUAI;
             $kode_tindakan="sesuai";
+        }
+        else if($jumlah_ya >= 7){
+            $hasil_perkembangan=HasilPerkembangan::MERAGUKAN;
+            $tindakan=Tindakan::MERAGUKAN;
+            $kode_tindakan="meragukan";
+        }else if($jumlah_ya <= 6){
+            $hasil_perkembangan=HasilPerkembangan::PENYIMPANGAN;
+            $tindakan=Tindakan::PENYIMPANGAN;
+            $kode_tindakan="penyimpangan";
         }
        
         return response()->json([

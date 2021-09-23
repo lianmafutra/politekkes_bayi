@@ -36,7 +36,8 @@ class PerkembanganController extends Controller
     }
 
     public function getHasilPerkembangan(Request $request){
-        $array_jawaban [] = json_decode(request('jawaban'));
-        return PerkembanganService::getHasilPerkembangan($request->tgl_lahir,   $array_jawaban);
+        $array_jawaban = json_decode(request('jawaban'));
+  
+        return PerkembanganService::getHasilPerkembangan($request->tgl_lahir,$array_jawaban);
     }
 }

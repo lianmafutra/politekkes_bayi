@@ -50,7 +50,7 @@ class JawabanController extends Controller
 
 
     public function getHistoriJawabanByUser(){
-       $jawaban =  Jawaban::where('users_id',Auth::user()->id)->select(['id','nama_balita','tanggal_lahir','tanggal_pemeriksaan'])->get();
+       $jawaban =  Jawaban::where('users_id', Auth::user()->id)->select(['id','nama_balita','tanggal_lahir','tanggal_pemeriksaan'])->get();
 
         return response()->json([
             "success"      => true,
