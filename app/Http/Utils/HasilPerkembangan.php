@@ -14,5 +14,9 @@ abstract class HasilPerkembangan
     <li><strong>Untuk anak usia diatas 3 bulan: tiap 6 bulan secara periodic</strong></li>
     </ul>";
 
+    public static function getHasilPerkembangan(){
+        
+    }
+
 }
 
