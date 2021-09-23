@@ -51,14 +51,29 @@ class JawabanController extends Controller
 
     public function getHistoriJawabanByUser(){
        $jawaban =  Jawaban::where('users_id', Auth::user()->id)->select(['id','nama_balita','tanggal_lahir','tanggal_pemeriksaan'])->get();
-
         return response()->json([
-            "success"      => true,
-            "histori_jawaban "=> Auth::user()->username. "(".Auth::user()->nim.")",
-            "data"         => $jawaban
-    ]);
+            "success"          => true,
+            "histori_jawaban " => Auth::user()->username. "(".Auth::user()->nim.")",
+            "data"             => $jawaban
+        ]);
 
     }
+
+    public function getHistoriJawabanByAdmin(){
+        if(Auth::user()->username=='admin'){
+            $jawaban =  Jawaban::select(['id','nama_balita','tanggal_lahir','tanggal_pemeriksaan', 'username','nim','nama_lengkap'])->get();
+            return response()->json([
+                "success"          => true,
+                "message " =>       "Data histori jawaban seluruh user",
+                "data"             => $jawaban
+            ]);
+        }
+        else{
+            return $this->error('anda tidak diberikan hak akses untuk mengakses endpoint ini',200);
+        }
+       
+ 
+     }
 
 
     public function getHistoriJawabanDetail($id){
