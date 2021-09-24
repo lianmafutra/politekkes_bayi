@@ -38,7 +38,21 @@ class PerkembanganService
             $tindakan=Tindakan::PENYIMPANGAN;
             $kode_tindakan="penyimpangan";
         }
-       
+
+        //hitung jadwal perkembangan berikutnya
+        
+        //3-24 (rentang 3 bulan )
+        //24-60 (rentang 6 bulan )
+
+        //1 rentang 0-3
+        // 3-1 = 2 bulan berikutnya 
+        
+        //5 rentang 3-6
+        //6-5= 1 
+
+        //6 rentang 6-9
+        //9-6 = 3 
+
         return response()->json([
             "success" => true,
             "message" => "hasil perkembangan ",

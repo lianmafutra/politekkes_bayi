@@ -23,4 +23,16 @@ class Jawaban extends Model
         return \Carbon\Carbon::parse($this->attributes['updated_at'])
             ->format('d-m-Y H:i:s');
     }
+
+    public function getTanggalLahirAttribute()
+    {
+        return \Carbon\Carbon::parse($this->attributes['tanggal_lahir'])
+            ->format('d-m-Y');
+    }
+
+    public function getTanggalPemeriksaanAttribute()
+    {
+        return \Carbon\Carbon::parse($this->attributes['tanggal_pemeriksaan'])
+            ->format('d-m-Y');
+    }
 }
