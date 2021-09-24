@@ -12,6 +12,7 @@ trait PenilaianTraits {
         $tanggal_lahir=Carbon::parse($tanggal_lahir);
         $tanggal_sekarang=Carbon::parse($tanggal_sekarang);
         $date_diff=$tanggal_lahir->diffInMonths($tanggal_sekarang);
+       
         return $date_diff;
     }
 

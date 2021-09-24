@@ -12,6 +12,7 @@ class Jawaban extends Model
 
     protected $table = 'jawaban';
     protected $guarded = [];
+    protected $appends = ['tgl_lahir_origin'];
    
     public function getCreatedAtAttribute()
     {
@@ -29,6 +30,12 @@ class Jawaban extends Model
     {
         return Tanggal::formatIndo(\Carbon\Carbon::parse($this->attributes['tanggal_lahir'])
             ->format('d-m-Y'));
+    }
+
+    public function getTanggalLahirOriginAttribute()
+    {
+        return \Carbon\Carbon::parse($this->attributes['tanggal_lahir'])
+            ->format('d-m-Y');
     }
 
     public function getTanggalPemeriksaanAttribute()

@@ -17,21 +17,27 @@ class BalitaController extends Controller
     {
         if (date('d-m-Y', strtotime($tanggal_lahir)) == $tanggal_lahir)
         {
-            $data = [
-                'balita'  => [
-                    'usia_balita'  => $this->getUsiaBayiTerbilang($tanggal_lahir),
-                    'usia_dalam_hari'  => $this->getSelisihHari($tanggal_lahir),
-                    'usia_dalam_bulan' => $this->getSelisihBulan($tanggal_lahir),
-                    'rentang_usia'     => $this->getRentangBulan($tanggal_lahir),
-                    'usia_terbilang'   => 'Umur balita pada saat ini <strong>'.$this->getUsiaBayiTerbilang($tanggal_lahir).'</strong>, Tekan selanjutnya untuk melakukan penilaiaan pertumbuhan balita',
-                ]
-            ];
-
-            return $this->success( $data,'rentang usia bayi '.$this->getRentangBulan($tanggal_lahir) . ' bulan');
+            if($this->getSelisihBulan($tanggal_lahir)<60){
+                $data = [
+                    'balita'  => [
+                        'usia_balita'  => $this->getUsiaBayiTerbilang($tanggal_lahir),
+                        'usia_dalam_hari'  => $this->getSelisihHari($tanggal_lahir),
+                        'usia_dalam_bulan' => $this->getSelisihBulan($tanggal_lahir),
+                        'rentang_usia'     => $this->getRentangBulan($tanggal_lahir),
+                        'usia_terbilang'   => 'Umur balita pada saat ini <strong>'.$this->getUsiaBayiTerbilang($tanggal_lahir).'</strong>, Tekan selanjutnya untuk melakukan penilaiaan pertumbuhan balita',
+                    ]
+                ];
+    
+                return $this->success( $data,'rentang usia bayi '.$this->getRentangBulan($tanggal_lahir) . ' bulan');
+           
+            }
+            else{
+                return $this->error("maaf umur lebih dari 60 bulan", 200);
+            }
         }
         else
         {
-            return $this->error("format tanggal tidak sesuai", 400);
+            return $this->error("format tanggal tidak sesuai", 200);
         }
 
     }

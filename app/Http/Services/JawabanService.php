@@ -81,8 +81,8 @@ class JawabanService
 
     public  function getHistoriJawabanDetail($id){
         $jawaban_detail = Jawaban::find($id);
-        
-        $usia_bayi = $this->getRentangBulan(Carbon::parse($jawaban_detail->tanggal_lahir)->format('d-m-Y'));
+   
+        $usia_bayi = $this->getRentangBulan(Carbon::parse($jawaban_detail->tanggal_lahir_origin)->format('d-m-Y'));
     
         $perkembangan = Perkembangan::whereRelation('usia_bayi', 'rentang', '=', $usia_bayi)
         ->select(['text', 'gambar'])
@@ -102,7 +102,7 @@ class JawabanService
                     'nim'                 => Auth::user()->nim,
                     'username'            => Auth::user()->username,
                     'nama_lengkap'        => Auth::user()->username,
-                    'tanggal_pemeriksaan' => Carbon::parse($jawaban_detail->tanggal_pemeriksaan)->format('d-m-Y')
+                    'tanggal_pemeriksaan' => $jawaban_detail->tanggal_pemeriksaan
                 ],
                 'balita' => [
                     'nama'          => $jawaban_detail->nama_balita,
@@ -111,7 +111,7 @@ class JawabanService
                     'jenis_kelamin' => $jawaban_detail->jenis_kelamin,
                     'nama_ibu'      => $jawaban_detail->nama_ibu,
                     'alamat'        => $jawaban_detail->alamat,
-                    'tanggal_lahir' => Carbon::parse($jawaban_detail->tanggal_lahir)->format('d-m-Y'),
+                    'tanggal_lahir' => $jawaban_detail->tanggal_lahir,
                 ],
                 'pertumbuhan' => [
                     "kode_pertumbuhan"   => $jawaban_detail->kode_pertumbuhan,
@@ -122,7 +122,7 @@ class JawabanService
                 'perkembangan' => [
                     "hasil"               => HasilPerkembangan::getHasilPerkembangan($jawaban_detail->kode_tindakan_perkembangan),
                     "tindakan"            => Tindakan::getTindakan($jawaban_detail->kode_tindakan_perkembangan),
-                    "jadwal_pertumbuhan"  => Carbon::parse($jawaban_detail->jadwal_pertumbuhan)->format('d-m-Y'),
+                    "jadwal_pertumbuhan"  => Tanggal::formatIndo(Carbon::parse($jawaban_detail->jadwal_pertumbuhan)->format('d-m-Y')),
                     "jadwal_perkembangan" => HasilPerkembangan::HASIL_JADWAL
                 ],
                 'jawaban' => $perkembangan 
