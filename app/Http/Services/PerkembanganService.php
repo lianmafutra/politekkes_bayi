@@ -16,8 +16,9 @@ use App\Models\Perkembangan;
 
 class PerkembanganService  
 {
+    use PenilaianTraits;
 
-    public static function getHasilPerkembangan($tgl_lahir, $array_jawaban){
+    public function getHasilPerkembangan($tgl_lahir, $array_jawaban){
 
         $hasil_perkembangan="";
         $tindakan="";
@@ -40,6 +41,13 @@ class PerkembanganService
         }
 
         //hitung jadwal perkembangan berikutnya
+
+       $rentang = $this->getRentangBulan($tgl_lahir);
+       $usia_dalam_bulan = $this->getSelisihBulan($tgl_lahir);
+       $rentang_akhir = substr($rentang, strrpos($rentang, '-' )+1);
+       $bulan_berikutnya = $rentang_akhir-$usia_dalam_bulan;
+       $jadwal_perkembangan = Carbon::parse($tgl_lahir)->addMonths($bulan_berikutnya)->format('d-m-y');
+       $rumus = 'tgl_lahir = '.$tgl_lahir.', usia = '.$usia_dalam_bulan.' bulan, rentang = '. $rentang. ', maka = '.$rentang_akhir.'-'.$usia_dalam_bulan.'= '.$bulan_berikutnya.' bulan';
         
         //3-24 (rentang 3 bulan )
         //24-60 (rentang 6 bulan )
@@ -61,7 +69,8 @@ class PerkembanganService
                 "kode_tindakan_perkembangan" => $kode_tindakan,
                 "tindakan"                   => $tindakan . "<br><br> Tekan selanjutnya untuk mengetahui jadwal penilaian pertumbuhan dan perkembangan berikutnya",
                 "jadwal_pertumbuhan"         => "Jadwal Pertumbuhan akan dilakukan pada tanggal : ".Carbon::parse($tgl_lahir)->addMonths(1)->format('d-m-Y'),
-                "jadwal_perkembangan"        => "Jadwal Perkembangan akan dilakukan ".HasilPerkembangan::HASIL_JADWAL
+                "jadwal_perkembangan"        => $jadwal_perkembangan,
+                "rumus"                     =>  $rumus
             ]
         ]);
     }

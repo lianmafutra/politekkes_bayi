@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class PerkembanganController extends Controller
 {
 
-    use PenilaianTraits;
+
 
     public function getPertanyaan($tanggal_lahir){
       
@@ -35,8 +35,8 @@ class PerkembanganController extends Controller
 
     }
 
-    public function getHasilPerkembangan(Request $request){
+    public function getHasilPerkembangan(PerkembanganService $perkembanganService, Request $request){
         $array_jawaban = json_decode(request('jawaban'));
-        return PerkembanganService::getHasilPerkembangan($request->tgl_lahir,$array_jawaban);
+        return $perkembanganService->getHasilPerkembangan($request->tgl_lahir,$array_jawaban);
     }
 }
