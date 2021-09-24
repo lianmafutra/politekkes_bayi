@@ -57,17 +57,20 @@ trait PenilaianTraits {
        elseif($selisih_bulan >=9 && $selisih_bulan <12){
         return '9-12';
        }
-       elseif($selisih_bulan >=12 && $selisih_bulan <18){
-            return '12-18';
+       elseif($selisih_bulan >=12 && $selisih_bulan <15){
+            return '12-15';
         }
-        elseif($selisih_bulan >=18 && $selisih_bulan <24){
-            return '18-24';
+        elseif($selisih_bulan >=15 && $selisih_bulan <18){
+            return '15-18';
+        }
+        elseif($selisih_bulan >=18 && $selisih_bulan <21){
+            return '18-21';
+        }
+        elseif($selisih_bulan >=21 && $selisih_bulan <24){
+            return '21-24';
         }
         elseif($selisih_bulan >=24 && $selisih_bulan <30){
             return '24-30';
-        }
-        elseif($selisih_bulan >=30 && $selisih_bulan <36){
-            return '30-36';
         }
         elseif($selisih_bulan >=36 && $selisih_bulan <42){
             return '36-42';
