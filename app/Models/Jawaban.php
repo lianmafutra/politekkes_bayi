@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Services\Tanggal;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,13 +27,13 @@ class Jawaban extends Model
 
     public function getTanggalLahirAttribute()
     {
-        return \Carbon\Carbon::parse($this->attributes['tanggal_lahir'])
-            ->format('d-m-Y');
+        return Tanggal::formatIndo(\Carbon\Carbon::parse($this->attributes['tanggal_lahir'])
+            ->format('d-m-Y'));
     }
 
     public function getTanggalPemeriksaanAttribute()
     {
-        return \Carbon\Carbon::parse($this->attributes['tanggal_pemeriksaan'])
-            ->format('d-m-Y');
+        return Tanggal::formatIndo(\Carbon\Carbon::parse($this->attributes['tanggal_pemeriksaan'])
+            ->format('d-m-Y'));
     }
 }

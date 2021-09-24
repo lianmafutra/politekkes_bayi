@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class PerkembanganController extends Controller
 {
 
-
+use PenilaianTraits;
 
     public function getPertanyaan($tanggal_lahir){
       

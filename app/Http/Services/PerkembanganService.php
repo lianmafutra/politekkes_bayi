@@ -46,7 +46,7 @@ class PerkembanganService
        $rentang = $this->getRentangBulan($tgl_lahir);  
        $rentang_akhir = substr($rentang, strrpos($rentang, '-' )+1);
        $bulan_berikutnya = $rentang_akhir-$usia_dalam_bulan;
-       $jadwal_perkembangan = Carbon::parse($tgl_lahir)->addMonths($bulan_berikutnya)->format('d-F-Y');
+       $jadwal_perkembangan = Carbon::parse($tgl_lahir)->addMonths($bulan_berikutnya)->format('d-m-Y');
        $rumus = 'tgl_lahir = '.$tgl_lahir.', usia = '.$usia_dalam_bulan.' bulan, rentang = '. $rentang. ', maka = '.$rentang_akhir.'-'.$usia_dalam_bulan.'= '.$bulan_berikutnya.' bulan';
         
         return response()->json([
@@ -56,8 +56,8 @@ class PerkembanganService
                 "hasil_perkembangan"         => '<strong>'.$hasil_perkembangan . "</strong> ,<br><br> tekan selanjutnya untuk melihat hasil rekomendasi",
                 "kode_tindakan_perkembangan" => $kode_tindakan,
                 "tindakan"                   => $tindakan . "<br><br> Tekan selanjutnya untuk mengetahui jadwal penilaian pertumbuhan dan perkembangan berikutnya",
-                "jadwal_pertumbuhan"         => "Jadwal Pertumbuhan akan dilakukan pada tanggal : ".Carbon::parse($tgl_lahir)->addMonths(1)->format('d-m-Y'),
-                "jadwal_perkembangan"        => $jadwal_perkembangan,
+                "jadwal_pertumbuhan"         => "Jadwal Pertumbuhan akan dilakukan pada tanggal : ".Tanggal::formatIndo(Carbon::parse($tgl_lahir)->addMonths(1)->format('d-m-Y')),
+                "jadwal_perkembangan"        => Tanggal::formatIndo($jadwal_perkembangan),
                 "rumus"                     =>  $rumus
             ]
         ]);

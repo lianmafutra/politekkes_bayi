@@ -37,7 +37,7 @@ class JawabanService
                 "kode_pertumbuhan"           => $request->kode_pertumbuhan,
                 "kode_rekomendasi"           => $request->kode_rekomendasi,
                 "kode_tindakan_perkembangan" => $request->kode_tindakan_perkembangan,
-                "jadwal_pertumbuhdan"         => Carbon::parse($request->tanggal_lahir)->addMonths(1)->format('Y-d-m'),
+                "jadwal_pertumbuhan"         => Carbon::parse($request->tanggal_lahir)->addMonths(1)->format('Y-d-m'),
                 "jadwal_perkembangan"        => $request->jadwal_perkembangan,
                 "jawaban_array"              => $request->jawaban_array,
             ]);
