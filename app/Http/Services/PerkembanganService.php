@@ -41,26 +41,14 @@ class PerkembanganService
         }
 
         //hitung jadwal perkembangan berikutnya
-
-       $rentang = $this->getRentangBulan($tgl_lahir);
+        //rumus = rentang_akhir - usia bayi dalam bulan
        $usia_dalam_bulan = $this->getSelisihBulan($tgl_lahir);
+       $rentang = $this->getRentangBulan($tgl_lahir);  
        $rentang_akhir = substr($rentang, strrpos($rentang, '-' )+1);
        $bulan_berikutnya = $rentang_akhir-$usia_dalam_bulan;
-       $jadwal_perkembangan = Carbon::parse($tgl_lahir)->addMonths($bulan_berikutnya)->format('d-m-y');
+       $jadwal_perkembangan = Carbon::parse($tgl_lahir)->addMonths($bulan_berikutnya)->format('d-F-Y');
        $rumus = 'tgl_lahir = '.$tgl_lahir.', usia = '.$usia_dalam_bulan.' bulan, rentang = '. $rentang. ', maka = '.$rentang_akhir.'-'.$usia_dalam_bulan.'= '.$bulan_berikutnya.' bulan';
         
-        //3-24 (rentang 3 bulan )
-        //24-60 (rentang 6 bulan )
-
-        //1 rentang 0-3
-        // 3-1 = 2 bulan berikutnya 
-        
-        //5 rentang 3-6
-        //6-5= 1 
-
-        //6 rentang 6-9
-        //9-6 = 3 
-
         return response()->json([
             "success" => true,
             "message" => "hasil perkembangan ",
