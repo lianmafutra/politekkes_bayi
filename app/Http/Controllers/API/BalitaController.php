@@ -4,31 +4,34 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PertumbuhanRequest;
+use App\Http\Services\BalitaService;
 use App\Http\Services\PertumbuhanService;
-use App\Http\Traits\PenilaianTraits;
+
 
 
 class BalitaController extends Controller
 {
 
-    use PenilaianTraits;
+
 
     public function getUmurBalita($tanggal_lahir)
     {
+        $balita = new BalitaService();
         if (date('d-m-Y', strtotime($tanggal_lahir)) == $tanggal_lahir)
         {
-            if($this->getSelisihBulan($tanggal_lahir)<60){
+            if($balita->getSelisihBulan($tanggal_lahir)<60){
+               
                 $data = [
                     'balita'  => [
-                        'usia_balita'  => $this->getUsiaBayiTerbilang($tanggal_lahir),
-                        'usia_dalam_hari'  => $this->getSelisihHari($tanggal_lahir),
-                        'usia_dalam_bulan' => $this->getSelisihBulan($tanggal_lahir),
-                        'rentang_usia'     => $this->getRentangBulan($tanggal_lahir),
-                        'usia_terbilang'   => 'Umur balita pada saat ini <strong>'.$this->getUsiaBayiTerbilang($tanggal_lahir).'</strong>, Tekan selanjutnya untuk melakukan penilaiaan pertumbuhan balita',
+                        'usia_balita'      => $balita->getUsiaBayiTerbilang($tanggal_lahir),
+                        'usia_dalam_hari'  => $balita->getSelisihHari($tanggal_lahir),
+                        'usia_dalam_bulan' => $balita->getSelisihBulan($tanggal_lahir),
+                        'rentang_usia'     => $balita->getRentangBulan($tanggal_lahir),
+                        'usia_terbilang'   => 'Umur balita pada saat ini <strong>'.$balita->getUsiaBayiTerbilang($tanggal_lahir).'</strong>, Tekan selanjutnya untuk melakukan penilaiaan pertumbuhan balita',
                     ]
                 ];
     
-                return $this->success( $data,'rentang usia bayi '.$this->getRentangBulan($tanggal_lahir) . ' bulan');
+                return $this->success( $data,'rentang usia bayi '.$balita->getRentangBulan($tanggal_lahir) . ' bulan');
            
             }
             else{

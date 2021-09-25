@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\UserController;
-use App\Http\Controllers\API\PenilaianController;
+
 use App\Http\Controllers\API\PerkembanganController;
 use App\Http\Controllers\API\SliderController;
-use App\Models\Perkembangan;
+
 use Illuminate\Support\Facades\Artisan;
 
 /*

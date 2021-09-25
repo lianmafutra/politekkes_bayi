@@ -42,7 +42,7 @@ trait PenilaianTraits {
         }
     }
 
-    public function getRentangBulan($tanggal_lahir){
+    public  function getRentangBulan($tanggal_lahir){
     
        $selisih_bulan =  $this->getSelisihBulan($tanggal_lahir);
 

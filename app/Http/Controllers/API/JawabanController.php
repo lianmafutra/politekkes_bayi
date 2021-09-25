@@ -9,8 +9,8 @@ class JawabanController extends Controller
 {
    
 
-    public function kirimJawaban(Request $request){
-       return JawabanService::kirimJawaban($request);
+    public function kirimJawaban(JawabanService $jawabanService, Request $request){
+       return $jawabanService->kirimJawaban($request);
     }
 
     public function getHistoriJawabanByUser(){

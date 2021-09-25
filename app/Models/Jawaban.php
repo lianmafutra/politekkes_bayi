@@ -12,7 +12,7 @@ class Jawaban extends Model
 
     protected $table = 'jawaban';
     protected $guarded = [];
-    protected $appends = ['tgl_lahir_origin'];
+    protected $appends = ['tanggal_lahir_origin'];
    
     public function getCreatedAtAttribute()
     {

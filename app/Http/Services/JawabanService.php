@@ -2,7 +2,7 @@
 
 namespace App\Http\Services;
 
-use App\Http\Traits\PenilaianTraits;
+
 use App\Http\Utils\HasilPerkembangan;
 use App\Http\Utils\Pertumbuhan;
 use App\Http\Utils\Rekomendasi;
@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Auth;
 
 class JawabanService  
 {
-    use PenilaianTraits;
+   
 
-    public static function kirimJawaban($request){
+    public function kirimJawaban($request){
         
         try {
             Jawaban::create([
@@ -33,12 +33,12 @@ class JawabanService
                 'jenis_kelamin'              => $request->jenis_kelamin,
                 'berat'                      => $request->berat,
                 'panjang'                    => $request->panjang,
-                'rentang_usia'               => $request->rentang_usia,
+                'rentang_usia'               => (new BalitaService)->getRentangBulan($request->tanggal_lahir),
                 "kode_pertumbuhan"           => $request->kode_pertumbuhan,
                 "kode_rekomendasi"           => $request->kode_rekomendasi,
                 "kode_tindakan_perkembangan" => $request->kode_tindakan_perkembangan,
                 "jadwal_pertumbuhan"         => Carbon::parse($request->tanggal_lahir)->addMonths(1)->format('Y-d-m'),
-                "jadwal_perkembangan"        => $request->jadwal_perkembangan,
+                "jadwal_perkembangan"        => Carbon::parse((new PerkembanganService)->getJadwalPerkembangan($request->tanggal_lahir))->format('Y-m-d'),
                 "jawaban_array"              => $request->jawaban_array,
             ]);
             return response()->json([
@@ -80,15 +80,23 @@ class JawabanService
     }
 
     public  function getHistoriJawabanDetail($id){
+
+        $balita = new BalitaService();
         $jawaban_detail = Jawaban::find($id);
    
-        $usia_bayi = $this->getRentangBulan(Carbon::parse($jawaban_detail->tanggal_lahir_origin)->format('d-m-Y'));
+        $usia_bayi = $balita->getRentangBulan(Carbon::parse($jawaban_detail->tanggal_lahir_origin)->format('d-m-Y'));
     
         $perkembangan = Perkembangan::whereRelation('usia_bayi', 'rentang', '=', $usia_bayi)
         ->select(['text', 'gambar'])
         ->get();
 
         $array = json_decode($jawaban_detail->jawaban_array, TRUE);
+
+        // dd($usia_bayi);
+        // dd($jawaban_detail);
+        // dd($jawaban_detail->jawaban_array);
+        // dd($array);
+        // dd($perkembangan->toArray());
     
         $perkembangan->each(function($item, $key) use ($array) { 
             $item['jawaban'] = $array[$key];
