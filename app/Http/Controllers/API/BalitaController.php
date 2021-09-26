@@ -20,8 +20,16 @@ class BalitaController extends Controller
         if (date('d-m-Y', strtotime($tanggal_lahir)) == $tanggal_lahir)
         {
             if($balita->getSelisihBulan($tanggal_lahir)<60){
-               $usia_full = $balita->getSelisihBulan($tanggal_lahir)." bulan ".$balita->getUsiaBayiTerbilang($tanggal_lahir)." (".$balita->getUsiaBayiFull($tanggal_lahir).")";
-                $data = [
+
+
+              
+               if($balita->getSelisihBulan($tanggal_lahir)>12){
+                $usia_full = $balita->getSelisihBulan($tanggal_lahir)." bulan ".$balita->getUsiaBayiTerbilang($tanggal_lahir)." (".$balita->getUsiaBayiFull($tanggal_lahir).")";
+               }
+               else{
+                $usia_full = $balita->getSelisihBulan($tanggal_lahir)." bulan ".$balita->getUsiaBayiTerbilang($tanggal_lahir);
+               }
+               $data = [
                     'balita'  => [
                         'usia_balita'      => $usia_full,
                         'usia_dalam_hari'  => $balita->getSelisihHari($tanggal_lahir),
