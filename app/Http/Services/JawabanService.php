@@ -83,8 +83,9 @@ class JawabanService
 
         $balita = new BalitaService();
         $jawaban_detail = Jawaban::find($id);
-   
-        $usia_bayi = $balita->getRentangBulan(Carbon::parse($jawaban_detail->tanggal_lahir_origin)->format('d-m-Y'));
+
+        if($jawaban_detail){
+            $usia_bayi = $balita->getRentangBulan(Carbon::parse($jawaban_detail->tanggal_lahir_origin)->format('d-m-Y'));
     
         $perkembangan = Perkembangan::whereRelation('usia_bayi', 'rentang', '=', $usia_bayi)
         ->select(['text', 'gambar'])
@@ -138,5 +139,13 @@ class JawabanService
         ];
 
         return response()->json($response);
+        }
+        else{
+            return response()->json([ 
+                'success' => false,
+            'message' => 'jawaban dengan id = '.$id.' tidak ditemukan']);
+        }
+   
+      
     }
 }
