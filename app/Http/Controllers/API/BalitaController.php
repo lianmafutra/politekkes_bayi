@@ -23,7 +23,7 @@ class BalitaController extends Controller
                
                 $data = [
                     'balita'  => [
-                        'usia_balita'      => $balita->getUsiaBayiTerbilang($tanggal_lahir),
+                        'usia_balita'      => $balita->getSelisihBulan($tanggal_lahir)." bulan ".$balita->getUsiaBayiTerbilang($tanggal_lahir)." (".$balita->getUsiaBayiFull($tanggal_lahir).")",
                         'usia_dalam_hari'  => $balita->getSelisihHari($tanggal_lahir),
                         'usia_dalam_bulan' => $balita->getSelisihBulan($tanggal_lahir),
                         'rentang_usia'     => $balita->getRentangBulan($tanggal_lahir),

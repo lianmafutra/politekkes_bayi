@@ -15,9 +15,20 @@ class BalitaService
         $tanggal_lahir=Carbon::parse($tanggal_lahir);
         $tanggal_sekarang=Carbon::parse($tanggal_sekarang);
         $date_diff=$tanggal_lahir->diffInMonths($tanggal_sekarang);
-       
+   
         return $date_diff;
     }
+
+    public function getUsiaBayiFull($tanggal_lahir){
+        $tgl_lahir = new DateTime($tanggal_lahir);
+        $today = new DateTime('today');
+        $y = $today->diff($tgl_lahir)->y;
+        $m = $today->diff($tgl_lahir)->m;
+        $d = $today->diff($tgl_lahir)->d;
+        return $y. " tahun ".$m." bulan ".$d . " hari";
+    }
+
+  
    
     public function getSelisihHari($tanggal_lahir){
         $tanggal_sekarang = Carbon::now()->format('d-m-Y');
@@ -27,13 +38,16 @@ class BalitaService
         return $date_diff;
     }
 
-    public function getUsiaBayiTerbilang($tanggal_lahir){        
+    public function getUsiaBayiTerbilang($tanggal_lahir){  
+        
+        
         $tgl_lahir = new DateTime($tanggal_lahir);
         $today = new DateTime('today');
         $y = $today->diff($tgl_lahir)->y;
+        
         $m = $today->diff($tgl_lahir)->m;
         $d = $today->diff($tgl_lahir)->d;
-        return $y . " tahun " . $m . " bulan " . $d . " hari";
+        return $d . " hari";
     }
 
 
