@@ -28,8 +28,7 @@ class BalitaService
         return $y. " tahun ".$m." bulan ".$d . " hari";
     }
 
-  
-   
+
     public function getSelisihHari($tanggal_lahir){
         $tanggal_sekarang = Carbon::now()->format('d-m-Y');
         $tanggal_lahir=Carbon::parse($tanggal_lahir);
