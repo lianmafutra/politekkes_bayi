@@ -66,7 +66,17 @@ class UserController extends Controller
 
     public function resetPassword(Request $request)
     {
-        // masih ragu hak akses reset password
+        $user =  User::where('nim', $request->nim)->where('username',$request->username)->first();
+      
+        if($user!=null){
+            $user->password = Hash::make('123456');
+            $user->save();
+            return $this->success("", "Password anda berhasil di reset menjadi 123456");
+        }
+        else{
+            return $this->error("NIM atau username anda tidak tepat ",200);
+        }
+      
     }
 
     public function logout()
@@ -79,5 +89,7 @@ class UserController extends Controller
         }
       
     }
+
+    
    
 }
