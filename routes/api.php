@@ -33,7 +33,8 @@ use Illuminate\Support\Facades\Artisan;
 
 Route::prefix('user')->group(function () {
     Route::post('login', [UserController::class, 'login']);
-    Route::post('register', [UserController::class, 'register']);       
+    Route::post('register', [UserController::class, 'register']);   
+    Route::post('password/reset', [UserController::class, 'resetPassword']);      
 });
 
 // Route::get('/foo', function () {
@@ -48,7 +49,7 @@ Route::middleware('auth:api')->group( function () {
        
         Route::prefix('password')->group(function () {
             Route::post('ubah', [UserController::class, 'ubahPassword']);    
-            Route::post('reset', [UserController::class, 'resetPassword']);    
+            
         });
 
         Route::prefix('jawaban')->group(function () {
