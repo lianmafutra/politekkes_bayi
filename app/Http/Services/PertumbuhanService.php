@@ -49,7 +49,7 @@ class PertumbuhanService
         $hasil_pertumbuhan = $this->getPertumbuhan($this->jenis_kelamin, $this->usia_dalam_bulan, $this->berat_badan);
         $this->hasil = $hasil_pertumbuhan->get('hasil');
         $this->pertumbuhan->pertumbuhan_kode =  $hasil_pertumbuhan->get('kode');
-        $this->pertumbuhan->status_pertumbuhan = 'Berat balita '.$this->berat_badan.' Kg dengan ambang batas '.$hasil_pertumbuhan->get('hasil'). '</p>,<br><br>Tekan selanjutnya untuk melihat rekomendasi pertumbuhan balita';
+        $this->pertumbuhan->status_pertumbuhan = 'Berat balita '.$this->berat_badan.' Kg dengan ambang batas '.$hasil_pertumbuhan->get('hasil').',<br><br>Tekan selanjutnya untuk melihat rekomendasi pertumbuhan balita';
         return $this;
     }
 
