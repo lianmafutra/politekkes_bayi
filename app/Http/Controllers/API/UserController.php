@@ -66,25 +66,16 @@ class UserController extends Controller
 
     public function resetPassword(Request $request)
     {
-        return response()->json([
-            "success" => true,
-            "message" => "sukses"
-        ]);
-        // try {
-        //     $user =  User::where('nim', $request->nim)->where('username',$request->username)->first();
+        $user =  User::where('nim', $request->nim)->where('username',$request->username)->first();
       
-        //     if($user!=null){
-        //         $user->password = Hash::make('123456');
-        //         $user->save();
-        //         return $this->success("", "Password anda berhasil di reset menjadi 123456");
-        //     }
-        //     else{
-        //         return $this->error("NIM atau username anda tidak tepat ", 200);
-        //     }
-        // } catch (\Throwable $th) {
-        //     return $this->error("Terjadi Kesalahan".$th, 200);
-        // }
-       
+        if($user!=null){
+            $user->password = Hash::make('123456');
+            $user->save();
+            return $this->success("", "Password anda berhasil di reset menjadi 123456");
+        }
+        else{
+            return $this->error("NIM atau username anda tidak tepat ",200);
+        }
       
     }
 
