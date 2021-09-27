@@ -44,12 +44,12 @@ class JawabanService
             return response()->json([
                 "success"  => true,
                 "message " => "Berhasil Mengirim jawaban"
-            ],200);
+            ]);
         } catch (\Error $th) {
             return response()->json([
                 "success"  => false,
                 "message " => "Gagal Mengirim jawaban". $th
-            ],200);
+            ]);
         }
     }
 
