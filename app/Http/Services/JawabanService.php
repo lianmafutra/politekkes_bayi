@@ -132,7 +132,7 @@ class JawabanService
                     "hasil"               => HasilPerkembangan::getHasilPerkembangan($jawaban_detail->kode_tindakan_perkembangan),
                     "tindakan"            => Tindakan::getTindakan($jawaban_detail->kode_tindakan_perkembangan),
                     "jadwal_pertumbuhan"  => Tanggal::formatIndo(Carbon::parse($jawaban_detail->jadwal_pertumbuhan)->format('d-m-Y')),
-                    "jadwal_perkembangan" => HasilPerkembangan::HASIL_JADWAL
+                    "jadwal_perkembangan" => Tanggal::formatIndo(Carbon::parse($jawaban_detail->jadwal_perkembangan)->format('d-m-Y'))
                 ],
                 'jawaban' => $perkembangan 
             ]  
