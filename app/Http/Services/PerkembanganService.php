@@ -41,8 +41,8 @@ class PerkembanganService
                 "hasil_perkembangan"         => '<strong>'.$hasil_perkembangan . "</strong> ,<br><br> tekan selanjutnya untuk melihat hasil rekomendasi",
                 "kode_tindakan_perkembangan" => $kode_tindakan,
                 "tindakan"                   => $tindakan . "<br><br> Tekan selanjutnya untuk mengetahui jadwal penilaian pertumbuhan dan perkembangan berikutnya",
-                "jadwal_pertumbuhan"         => "Jadwal Pertumbuhan akan dilakukan pada tanggal : ".Tanggal::formatIndo(Carbon::parse($tgl_lahir)->addMonths(1)->format('d-m-Y')),
-                "jadwal_perkembangan"        => Tanggal::formatIndo($this->getJadwalPerkembangan($tgl_lahir)),
+                "jadwal_pertumbuhan"         => "Jadwal Pertumbuhan akan dilakukan pada tanggal : ".'<strong>'.Tanggal::formatIndo(Carbon::parse($tgl_lahir)->addMonths(1)->format('d-m-Y')).'</strong>',
+                "jadwal_perkembangan"        => "Jadwal Perkembangan akan dilakukan pada tanggal : ".'<strong>'.Tanggal::formatIndo($this->getJadwalPerkembangan($tgl_lahir)).'</strong>',
             ]
         ]);
     }
