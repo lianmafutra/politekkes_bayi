@@ -126,7 +126,7 @@ class JawabanService
                     "kode_pertumbuhan"   => $jawaban_detail->kode_pertumbuhan,
                     "status_pertumbuhan" => Pertumbuhan::getStatusPertumbuhan($jawaban_detail->kode_pertumbuhan),
                     "kode_rekomendasi"   => $jawaban_detail->kode_rekomendasi,
-                    "status_rekomendasi" => Rekomendasi::getStatusRekomendasi($jawaban_detail->kode_pertumbuhan)
+                    "status_rekomendasi" => Rekomendasi::getStatusRekomendasi($jawaban_detail->kode_rekomendasi)
                 ],
                 'perkembangan' => [
                     "hasil"               => HasilPerkembangan::getHasilPerkembangan($jawaban_detail->kode_tindakan_perkembangan),
