@@ -117,6 +117,7 @@ class JawabanService
                     'nama'          => $jawaban_detail->nama_balita,
                     'panjang'       => $jawaban_detail->panjang ." cm",
                     'berat'         => $jawaban_detail->berat. " kg",
+                    'usia'          => (new BalitaService())->getSelisihBulan($jawaban_detail->tanggal_lahir)." bulan ".$balita->getUsiaBayiTerbilang($jawaban_detail->tanggal_lahir),
                     'jenis_kelamin' => $jawaban_detail->jenis_kelamin,
                     'nama_ibu'      => $jawaban_detail->nama_ibu,
                     'alamat'        => $jawaban_detail->alamat,
