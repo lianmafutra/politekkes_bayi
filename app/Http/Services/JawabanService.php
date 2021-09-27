@@ -37,17 +37,17 @@ class JawabanService
                 "kode_pertumbuhan"           => $request->kode_pertumbuhan,
                 "kode_rekomendasi"           => $request->kode_rekomendasi,
                 "kode_tindakan_perkembangan" => $request->kode_tindakan_perkembangan,
-                "jadwal_pertumbuhan"         => Carbon::parse($request->tanggal_lahir)->addMonths(1)->format('Y-d-m'),
+                "jadwal_pertumbuhan"         => Carbon::parse($request->tanggal_lahir)->addMonths(1)->format('Y-m-d'),
                 "jadwal_perkembangan"        => Carbon::parse((new PerkembanganService)->getJadwalPerkembangan($request->tanggal_lahir))->format('Y-m-d'),
                 "jawaban_array"              => $request->jawaban_array,
             ]);
             return response()->json([
-                "success"  => true,
+                "success" => true,
                 "message" => "Berhasil Mengirim jawaban"
             ]);
-        } catch (\Error $th) {
+        } catch (\Throwable $th) {
             return response()->json([
-                "success"  => false,
+                "success" => false,
                 "message" => "Gagal Mengirim jawaban". $th
             ]);
         }
@@ -143,7 +143,7 @@ class JawabanService
         }
         else{
             return response()->json([ 
-                'success' => false,
+            'success' => false,
             'message' => 'jawaban dengan id = '.$id.' tidak ditemukan']);
         }
    
