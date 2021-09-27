@@ -43,12 +43,12 @@ class JawabanService
             ]);
             return response()->json([
                 "success"  => true,
-                "message " => "Berhasil Mengirim jawaban"
+                "message" => "Berhasil Mengirim jawaban"
             ]);
         } catch (\Error $th) {
             return response()->json([
                 "success"  => false,
-                "message " => "Gagal Mengirim jawaban". $th
+                "message" => "Gagal Mengirim jawaban". $th
             ]);
         }
     }
