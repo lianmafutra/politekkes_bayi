@@ -26,7 +26,7 @@ class JawabanService
                 'nim'                        => Auth::user()->nim,
                 'nama_balita'                => $request->nama_balita,
                 'tanggal_lahir'              => Carbon::parse($request->tanggal_lahir)->format('Y-d-m'),
-                'tanggal_pemeriksaan'        => Carbon::parse($request->tanggal_pemeriksaan)->format('Y-d-m'),
+                'tanggal_pemeriksaan'        => Carbon::now()->format('Y-d-m'),
                 'nama_ibu'                   => $request->nama_ibu,
                 'alamat'                     => $request->alamat,
                 'usia_dalam_bulan'           => $request->usia_dalam_bulan,
