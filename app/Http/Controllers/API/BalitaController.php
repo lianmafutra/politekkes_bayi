@@ -29,7 +29,7 @@ class BalitaController extends Controller
                 $usia_full = $balita->getSelisihBulan($tanggal_lahir)." bulan ".$balita->getUsiaBayiTerbilang($tanggal_lahir);
                }
                else{
-                $usia_full = $balita->getSelisihHari($tanggal_lahir)." Hari ";
+                $usia_full = $balita->getSelisihHari($tanggal_lahir)." Hari";
                }
 
                
