@@ -18,10 +18,8 @@ class PerkembanganController extends Controller
         {
             $usia_bayi =  $balita->getRentangBulan($tanggal_lahir);
 
-            // $Perkembangan = Perkembangan::whereRelation('usia_bayi', 'rentang', '=', $usia_bayi)
-            // ->select(['bulan','usia_bayi_id','text', 'gambar'])
-            // ->get();
-            $Perkembangan = Perkembangan::select(['bulan','usia_bayi_id','text', 'gambar'])
+            $Perkembangan = Perkembangan::whereRelation('usia_bayi', 'rentang', '=', $usia_bayi)
+            ->select(['bulan','usia_bayi_id','text', 'gambar'])
             ->get();
 
             return response()->json([
