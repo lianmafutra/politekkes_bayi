@@ -17,7 +17,16 @@ class JawabanService
    
 
     public function kirimJawaban($request){
+
+        //validasi jawaban array , jumlah jawaban array wajib sama dengan jumlah soal+judul
         
+        if((new CekArrayJawaban)->invalid($request)){
+            return response()->json([
+                "success" => false,
+                "message" => "jumlah jawaban_array tidak sama dengan pertanyaan perkembangan"
+            ]);
+        }
+      
         try {
             Jawaban::create([
                 'users_id'                   => Auth::user()->id,

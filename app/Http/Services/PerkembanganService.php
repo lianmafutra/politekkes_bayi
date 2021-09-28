@@ -38,9 +38,6 @@ class PerkembanganService
         $jadwal_pertumbuhan = Carbon::parse($tgl_lahir_only_date .'-'. $tgl_pemeriksaan)->format('d-m-Y'); 
 
         
-
-
-      
         return response()->json([
             "success" => true,
             "message" => "hasil perkembangan ",
