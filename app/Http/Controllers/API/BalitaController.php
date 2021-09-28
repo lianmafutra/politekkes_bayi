@@ -25,10 +25,14 @@ class BalitaController extends Controller
               
                if($balita->getSelisihBulan($tanggal_lahir)>12){
                 $usia_full = $balita->getSelisihBulan($tanggal_lahir)." bulan ".$balita->getUsiaBayiTerbilang($tanggal_lahir)." (".$balita->getUsiaBayiFull($tanggal_lahir).")";
-               }
-               else{
+               }else if($balita->getSelisihBulan($tanggal_lahir)>0){
                 $usia_full = $balita->getSelisihBulan($tanggal_lahir)." bulan ".$balita->getUsiaBayiTerbilang($tanggal_lahir);
                }
+               else{
+                $usia_full = $balita->getSelisihHari($tanggal_lahir)." Hari ";
+               }
+
+               
                $data = [
                     'balita'  => [
                         'usia_balita'      => $usia_full,
