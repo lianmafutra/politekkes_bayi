@@ -37,8 +37,8 @@ class JawabanService
                 "kode_pertumbuhan"           => $request->kode_pertumbuhan,
                 "kode_rekomendasi"           => $request->kode_rekomendasi,
                 "kode_tindakan_perkembangan" => $request->kode_tindakan_perkembangan,
-                "jadwal_pertumbuhan"         => Carbon::parse($request->tanggal_lahir)->addMonths(1)->format('Y-m-d'),
-                "jadwal_perkembangan"        => Carbon::parse((new PerkembanganService)->getJadwalPerkembangan($request->tanggal_lahir))->format('Y-m-d'),
+                "jadwal_pertumbuhan"         => Carbon::parse($request->tanggal_pemeriksaan)->addMonths(1)->format('Y-m-d'),
+                "jadwal_perkembangan"        => Carbon::parse((new PerkembanganService)->getJadwalPerkembangan($request->tanggal_pemeriksaan))->format('Y-m-d'),
                 "jawaban_array"              => $request->jawaban_array,
             ]);
             return response()->json([
