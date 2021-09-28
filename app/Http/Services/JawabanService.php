@@ -9,6 +9,7 @@ use App\Http\Utils\Rekomendasi;
 use App\Http\Utils\Tindakan;
 use App\Models\Jawaban;
 use App\Models\Perkembangan;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +19,7 @@ class JawabanService
 
     public function kirimJawaban($request){
 
-        //validasi jawaban array , jumlah jawaban array wajib sama dengan jumlah soal+judul
+        //validasi jawaban array, jumlah jawaban array wajib sama dengan jumlah soal+judul
         
         if((new CekArrayJawaban)->invalid($request)){
             return response()->json([
@@ -111,15 +112,17 @@ class JawabanService
         $perkembangan->each(function($item, $key) use ($array) { 
             $item['jawaban'] = $array[$key];
         })->all();
-    
+
+       
+
         $response = [
             'success' => true,
             'message' => 'jawaban penilaian user',
             'data'    => [
                 'pemeriksa' => [ 
-                    'nim'                 => Auth::user()->nim,
-                    'username'            => Auth::user()->username,
-                    'nama_lengkap'        => Auth::user()->username,
+                    'nim'                 => $jawaban_detail->nim,
+                    'username'            => $jawaban_detail->username,
+                    'nama_lengkap'        => $jawaban_detail->nama_lengkap,
                     'tanggal_pemeriksaan' => $jawaban_detail->tanggal_pemeriksaan
                 ],
                 'balita' => [
