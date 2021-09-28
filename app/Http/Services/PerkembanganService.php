@@ -32,8 +32,15 @@ class PerkembanganService
             $kode_tindakan="penyimpangan";
         }
 
-      
+        $tgl_lahir_only_date = Carbon::parse($tgl_lahir)->format('d');
+        $tgl_pemeriksaan = Carbon::now()->addMonths(1)->format('m-Y');
+
+        $jadwal_pertumbuhan = Carbon::parse($tgl_lahir_only_date .'-'. $tgl_pemeriksaan)->format('d-m-Y'); 
+
         
+
+
+      
         return response()->json([
             "success" => true,
             "message" => "hasil perkembangan ",
@@ -41,8 +48,9 @@ class PerkembanganService
                 "hasil_perkembangan"         => '<strong>'.$hasil_perkembangan . "</strong> ,<br><br> tekan selanjutnya untuk melihat hasil rekomendasi",
                 "kode_tindakan_perkembangan" => $kode_tindakan,
                 "tindakan"                   => $tindakan . "<br><br> Tekan selanjutnya untuk mengetahui jadwal penilaian pertumbuhan dan perkembangan berikutnya",
-                "jadwal_pertumbuhan"         => "Jadwal Pertumbuhan akan dilakukan pada tanggal : ".'<strong>'.Tanggal::formatIndo(Carbon::parse($tgl_lahir)->addMonths(1)->format('d-m-Y')).'</strong>',
-                "jadwal_perkembangan"        => "Jadwal Perkembangan akan dilakukan pada tanggal : ".'<strong>'.Tanggal::formatIndo($this->getJadwalPerkembangan($tgl_lahir)).'</strong>',
+                "jadwal_pertumbuhan"         => "Jadwal Pertumbuhan akan dilakukan pada tanggal : ".'<strong>'.Tanggal::formatIndo( $jadwal_pertumbuhan).'</strong>',
+            //   "tgl"=> $this->getJadwalPerkembangan($tgl_lahir),
+                 "jadwal_perkembangan"        => "Jadwal Perkembangan akan dilakukan pada tanggal : ".'<strong>'.Tanggal::formatIndo($this->getJadwalPerkembangan($tgl_lahir)).'</strong>',
             ]
         ]);
     }
@@ -52,12 +60,13 @@ class PerkembanganService
         //rumus = rentang_akhir - usia bayi dalam bulan
         $balita = new BalitaService();
         $usia_dalam_bulan =   $balita->getSelisihBulan($tgl_lahir);
+        $tgl_pemeriksaan = Carbon::now();
         $rentang =  $balita->getRentangBulan($tgl_lahir);  
         $rentang_akhir = substr($rentang, strrpos($rentang, '-' )+1);
         $bulan_berikutnya = $rentang_akhir-$usia_dalam_bulan;
-        $jadwal_perkembangan = Carbon::parse($tgl_lahir)->addMonths($bulan_berikutnya)->format('d-m-Y');
-        // $rumus = 'tgl_lahir = '.$tgl_lahir.', usia = '.$usia_dalam_bulan.' bulan, rentang = '. $rentang. ', maka = '.$rentang_akhir.'-'.$usia_dalam_bulan.'= '.$bulan_berikutnya.' bulan';
-        return $jadwal_perkembangan;
+        $jadwal_perkembangan = $tgl_pemeriksaan->addMonths($bulan_berikutnya)->format('d-m-Y');
+        //  $rumus = 'tgl_lahir = '.$tgl_lahir.', usia = '.$usia_dalam_bulan.' bulan, rentang = '. $rentang. ', maka = '.$rentang_akhir.'-'.$usia_dalam_bulan.'= '.$bulan_berikutnya.' bulan, '.        $jadwal_perkembangan;
+         return $jadwal_perkembangan;
    
     } 
 
