@@ -34,6 +34,18 @@ th:first-child {
 
   border-left: 1px solid #dddddd;
 }
+
+input[type="search"] {
+    margin-bottom: 20px;
+}
+
+div#table_id_filter label {
+    font-weight: bold;
+}
+
+div#table_id_filter {
+    float: right;
+}
     </style>
 <body>
     
@@ -70,6 +82,7 @@ $('#table_id').DataTable({
         paginate: false,
         serverSide: true,
         bInfo : false ,
+        
         url: 'api/rekap/harian/',
         columns: [
             { data: 'DT_RowIndex'},
@@ -77,7 +90,10 @@ $('#table_id').DataTable({
             { data: 'kode_pertumbuhan' },
             { data: 'kode_tindakan_perkembangan'},
             { data: 'aksi'},
-        ]
+        ],
+        "oLanguage": {
+   "sSearch": "Cari Data"
+ }
     });
 
   
