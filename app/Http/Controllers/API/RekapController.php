@@ -12,15 +12,10 @@ use Yajra\DataTables\DataTables;
 
 class RekapController extends Controller
 {
-    public function getRekapHari(Request $request){
+    public function getRekapHari(Request $request, $tgl){
 
-       if($request->tanggal){
-        $jawaban = Jawaban::where('tanggal_pemeriksaan',  Carbon::now()->format('Y-m-d'));
-   
-       }else{
-        $jawaban = Jawaban::where('tanggal_pemeriksaan',  Carbon::parse($request->tanggal)->format('Y-m-d'));
-       }
-  
+ 
+        $jawaban = Jawaban::where('tanggal_pemeriksaan',  Carbon::parse($tgl)->format('Y-m-d'));
        
         if($request->ajax()){
             return DataTables::of( $jawaban->get())

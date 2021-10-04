@@ -43,7 +43,8 @@ Route::prefix('user')->group(function () {
 // });
 
 Route::post('/token-check', [UserController::class, 'login'])->name('login');
-Route::post('rekap/harian/', [RekapController::class, 'getRekapHari']);   
+Route::get('rekap/harian/{tgl}', [RekapController::class, 'getRekapHari']);   
+  
 Route::middleware('auth:api')->group( function () {
    
     Route::prefix('user')->group(function () {
