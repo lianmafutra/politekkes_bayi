@@ -69,6 +69,7 @@ $('#table_id').DataTable({
         processing: true,
         paginate: false,
         serverSide: true,
+        bInfo : false ,
         url: 'api/rekap/harian/',
         columns: [
             { data: 'DT_RowIndex'},

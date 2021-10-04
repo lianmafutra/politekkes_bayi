@@ -7,15 +7,23 @@ use App\Http\Utils\BeratBadan;
 use App\Http\Utils\HasilPerkembangan;
 use App\Models\Jawaban;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Yajra\DataTables\DataTables;
 
 class RekapController extends Controller
 {
-    public function getRekapHari(Request $request , $tgl){
+    public function getRekapHari(Request $request){
 
-        $jawaban = Jawaban::all();
+       if($request->tanggal){
+        $jawaban = Jawaban::where('tanggal_pemeriksaan',  Carbon::now()->format('Y-m-d'));
+   
+       }else{
+        $jawaban = Jawaban::where('tanggal_pemeriksaan',  Carbon::parse($request->tanggal)->format('Y-m-d'));
+       }
+  
+       
         if($request->ajax()){
-            return DataTables::of(Jawaban::all())
+            return DataTables::of( $jawaban->get())
             ->addColumn('kode_pertumbuhan', function($row){
                     if($row->kode_pertumbuhan=="normal"){
                         return BeratBadan::NORMAL;
