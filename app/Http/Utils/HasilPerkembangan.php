@@ -21,7 +21,10 @@ abstract class HasilPerkembangan
             return HasilPerkembangan::MERAGUKAN;
         }else if($kode_tindakan_perkembangan=='penyimpangan'){
             return HasilPerkembangan::PENYIMPANGAN;
-        }else{
+        }else if($kode_tindakan_perkembangan=='kurang_3_bulan'){
+            return HasilPerkembangan::KURANG_3_BULAN;
+        }
+        else{
             return 'kode_tindakan_perkembangan tidak sesuai';
         }
     }

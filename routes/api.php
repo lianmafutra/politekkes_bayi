@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 
 use App\Http\Controllers\API\PerkembanganController;
+use App\Http\Controllers\API\RekapController;
 use App\Http\Controllers\API\SliderController;
 
 use Illuminate\Support\Facades\Artisan;
@@ -42,7 +43,7 @@ Route::prefix('user')->group(function () {
 // });
 
 Route::post('/token-check', [UserController::class, 'login'])->name('login');
-
+Route::get('rekap/harian/{tgl}', [RekapController::class, 'getRekapHari']);   
 Route::middleware('auth:api')->group( function () {
    
     Route::prefix('user')->group(function () {
@@ -56,7 +57,8 @@ Route::middleware('auth:api')->group( function () {
             Route::post('kirim', [JawabanController::class, 'kirimJawaban']); 
             Route::get('histori', [JawabanController::class, 'getHistoriJawabanByUser']);
             Route::get('histori/admin', [JawabanController::class, 'getHistoriJawabanByAdmin']); 
-            Route::get('histori/detail/{id}', [JawabanController::class, 'getHistoriJawabanDetail']);    
+            Route::get('histori/detail/{id}', [JawabanController::class, 'getHistoriJawabanDetail']);  
+          
         });
 
         Route::post('logout', [UserController::class, 'logout']);

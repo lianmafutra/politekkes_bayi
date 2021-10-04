@@ -19,7 +19,7 @@ class BalitaController extends Controller
         $balita = new BalitaService();
         if (date('d-m-Y', strtotime($tanggal_lahir)) == $tanggal_lahir)
         {
-            if($balita->getSelisihBulan($tanggal_lahir)<60){
+            if($balita->getSelisihBulan($tanggal_lahir)<=60){
 
 
               
@@ -60,11 +60,13 @@ class BalitaController extends Controller
     public function getPertumbuhan(PertumbuhanRequest $request)
     {
         $validated = $request->validated();
+        $berat_badan =  str_replace(',', '.', $request->berat_badan);
+
         if($validated){
             $pertumbuhan = (new PertumbuhanService)
                 ->setUsia($request->usia_dalam_bulan)
                 ->setJenisKelamin($request->jenis_kelamin)
-                ->setBeratBadan($request->berat_badan)
+                ->setBeratBadan($berat_badan)
                 ->getHasilPertumbuhan()
                 ->getHasilRekomendasi()
                 ->build();

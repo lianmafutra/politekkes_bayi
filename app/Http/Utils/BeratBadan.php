@@ -10,4 +10,6 @@ abstract class BeratBadan
     const NORMAL        = "<strong>( -2SD - +1SD ) Pertumbuhan Berat badan normal</strong>";
     const LEBIH         = "<strong>( > +1SD ) Risiko Pertumbuhan Berat badan lebih</strong>";
 
+    
+
 }

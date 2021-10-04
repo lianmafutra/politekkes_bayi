@@ -29,7 +29,7 @@ class PertumbuhanRequest extends FormRequest
         return [
             'jenis_kelamin'    => ['required', Rule::in(['L','P'])],
             'usia_dalam_bulan' => 'required|numeric|',
-            'berat_badan'      => 'required|numeric|',
+            'berat_badan'      => 'required',
         ];   
     }
 
