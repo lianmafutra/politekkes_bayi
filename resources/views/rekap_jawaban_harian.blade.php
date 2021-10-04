@@ -62,8 +62,9 @@ $( document ).ready(function() {
     $(document).on('click', '.detail', function (e) {
         e.preventDefault();
         id= $(this).attr('data-id');
+        AndroidFunction.getDataWebview(id);
     });
-
+    
 $('#table_id').DataTable({
         processing: true,
         paginate: false,
