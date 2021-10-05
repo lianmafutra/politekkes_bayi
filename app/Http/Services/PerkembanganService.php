@@ -32,29 +32,26 @@ class PerkembanganService
             $kode_tindakan="penyimpangan";
         }
         
-        // }else if($jumlah_ya <= 6){
-        //     $hasil_perkembangan=HasilPerkembangan::KURANG_3_BULAN;
-        //     $tindakan=Tindakan::PENYIMPANGAN;
-        //     $kode_tindakan="kurang_dr_3_bulan";
-        // }
-
+   
         $tgl_lahir_only_date = Carbon::parse($tgl_lahir)->format('d');
         $tgl_pemeriksaan = Carbon::now()->addMonths(1)->format('m-Y');
 
         $jadwal_pertumbuhan = Carbon::parse($tgl_lahir_only_date .'-'. $tgl_pemeriksaan)->format('d-m-Y'); 
          $kurang_3bulan="";
-           $tindakan="";
-         
+        
+        
         if($balita->getSelisihBulan($tgl_lahir)<3){
-            $kurang_3bulan = "<br><span style='color:red'> Untuk balita yg umurnya kurang dari 3 bulan boleh lanjut penilaian<span>"; 
-            $tindakan="<strong>Ulangi penilaian saat anak berumur tepat 3 bulan</strong>";
+            // $kurang_3bulan = "<br><span style='color:red'> Untuk balita yg umurnya kurang dari 3 bulan boleh lanjut penilaian<span>"; 
+          
+            //  $hasil_perkembangan = "Untuk balita yg umurnya kurang dari 3 bulan boleh lanjut penilaian";
+             $tindakan ="<span style='color:red'>Ulangi penilaian saat anak berumur tepat 3 bulan</span>";
         }
         
         return response()->json([
             "success" => true,
             "message" => "hasil perkembangan ",
             "data"    => [
-                "hasil_perkembangan"         => '<strong>'.$hasil_perkembangan . ",".$kurang_3bulan." </strong> ,<br><br> tekan selanjutnya untuk melihat hasil rekomendasi",
+                "hasil_perkembangan"         => '<strong>'.$hasil_perkembangan." </strong> ,<br><br> tekan selanjutnya untuk melihat hasil rekomendasi",
                 "kode_tindakan_perkembangan" => $kode_tindakan,
                 "tindakan"                   => $tindakan . "<br><br> Tekan selanjutnya untuk mengetahui jadwal penilaian pertumbuhan dan perkembangan berikutnya",
                 "jadwal_pertumbuhan"         => "Jadwal Pertumbuhan akan dilakukan pada tanggal : ".'<strong>'.Tanggal::formatIndo( $jadwal_pertumbuhan).'</strong>',

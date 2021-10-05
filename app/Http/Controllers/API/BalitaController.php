@@ -61,6 +61,7 @@ class BalitaController extends Controller
     {
         $validated = $request->validated();
         $berat_badan =  str_replace(',', '.', $request->berat_badan);
+        // $berat_badan_float = (float) $berat_badan;
 
         if($validated){
             $pertumbuhan = (new PertumbuhanService)

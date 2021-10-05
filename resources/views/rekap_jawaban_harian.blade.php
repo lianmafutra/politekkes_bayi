@@ -38,7 +38,6 @@ th:first-child {
 input[type="search"] {
     margin-bottom: 20px;
 }
-
 div#table_id_filter label {
     font-weight: bold;
 }
@@ -49,7 +48,7 @@ div#table_id_filter {
     </style>
 <body>
     
-    <table id="table_id" class="cell-border"style="width:100%">
+    <table id="table_id" class="cell-border"style="width:100%; margin:10px;">
         <thead>
             <tr>
                 <th style="width: 5px">No</th>

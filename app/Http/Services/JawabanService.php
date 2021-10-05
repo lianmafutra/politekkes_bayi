@@ -118,6 +118,12 @@ class JawabanService
             $item['jawaban'] = $array[$key];
         })->all();
 
+
+        if($balita->getSelisihBulan($jawaban_detail->tanggal_lahir)<3){
+             $tindakan ="<span style='color:red'>Ulangi penilaian saat anak berumur tepat 3 bulan</span>";
+        }else{
+            $tindakan = Tindakan::getTindakan($jawaban_detail->kode_tindakan_perkembangan);
+        }
        
 
         $response = [
@@ -148,7 +154,7 @@ class JawabanService
                 ],
                 'perkembangan' => [
                     "hasil"               => HasilPerkembangan::getHasilPerkembangan($jawaban_detail->kode_tindakan_perkembangan),
-                    "tindakan"            => Tindakan::getTindakan($jawaban_detail->kode_tindakan_perkembangan),
+                    "tindakan"            =>  $tindakan,
                     "jadwal_pertumbuhan"  => Tanggal::formatIndo(Carbon::parse($jawaban_detail->jadwal_pertumbuhan)->format('d-m-Y')),
                     "jadwal_perkembangan" => Tanggal::formatIndo(Carbon::parse($jawaban_detail->jadwal_perkembangan)->format('d-m-Y'))
                 ],
